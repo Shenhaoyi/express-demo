@@ -4,6 +4,7 @@ import birds from './routes/birds.js';
 import singers from './routes/singers.js';
 import response from './routes/response.js';
 import record from './middlewares/record.js';
+import login from './routes/login.js';
 
 const app = express();
 const port = 3000;
@@ -18,6 +19,7 @@ app.get('/', (req, res) => {
 app.use('/birds', birds);
 app.use('/singers', singers);
 app.use('/response', response);
+app.use('/login', login);
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
