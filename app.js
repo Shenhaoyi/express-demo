@@ -3,9 +3,13 @@ import path from 'node:path';
 import birds from './routes/birds.js';
 import singers from './routes/singers.js';
 import response from './routes/response.js';
+import record from './middlewares/record.js';
 
 const app = express();
 const port = 3000;
+
+// 全局中间件
+app.use(record);
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -14,7 +18,6 @@ app.get('/', (req, res) => {
 app.use('/birds', birds);
 app.use('/singers', singers);
 app.use('/response', response);
-
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
