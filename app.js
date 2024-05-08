@@ -1,6 +1,7 @@
 import express from 'express';
 import path from 'node:path';
 import birds from './routes/birds.js';
+import singers from './routes/singers.js';
 
 const app = express();
 const port = 3000;
@@ -10,6 +11,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/birds', birds);
+app.use('/singers', singers);
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
