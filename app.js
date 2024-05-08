@@ -1,5 +1,6 @@
 import express from 'express';
 import path from 'node:path';
+import birds from './routes/birds.js';
 
 const app = express();
 const port = 3000;
@@ -7,6 +8,8 @@ const port = 3000;
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
+
+app.use('/birds', birds);
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
