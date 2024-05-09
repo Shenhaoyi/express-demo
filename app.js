@@ -6,6 +6,7 @@ import response from './routes/response.js';
 import record from './middlewares/record.js';
 import login from './routes/login.js';
 import ejs from './routes/ejs.js';
+import upload from './routes/upload.js';
 
 const app = express();
 const port = 3000;
@@ -26,6 +27,7 @@ app.use('/singers', singers);
 app.use('/response', response);
 app.use('/login', login);
 app.use('/ejs', ejs);
+app.use('/upload', upload);
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
