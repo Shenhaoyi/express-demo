@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import chalk from 'chalk';
+import Book from '../models/book.js';
 
 /*
   连接 mongodb 服务
@@ -8,9 +9,15 @@ import chalk from 'chalk';
 */
 mongoose.connect('mongodb://127.0.0.1:27017/test');
 
-mongoose.connection.once('open', () => {
+mongoose.connection.once('open', async () => {
   console.log(chalk.green('MongoDb connected'));
   // 这里写入连接成功后的代码
+  await Book.create({
+    title: 'test',
+    author: 'shen',
+    price: 100,
+  });
+  console.log(chalk.green('Data created'));
 });
 
 mongoose.connection.on('error', (error) => {
