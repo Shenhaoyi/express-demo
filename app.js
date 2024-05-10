@@ -7,6 +7,9 @@ import record from './middlewares/record.js';
 import login from './routes/login.js';
 import ejs from './routes/ejs.js';
 import upload from './routes/upload.js';
+import { dbUrl } from './config/dbConfig.js';
+import connect from './mongodb/db.js';
+import Book from './models/book.js';
 
 const app = express();
 const port = 3000;
@@ -35,6 +38,17 @@ app.use(
   }),
 );
 
-app.listen(port, () => {
-  console.log(`Example app listening on port http://localhost:${port}`);
-});
+async function start() {
+  await connect(dbUrl);
+  app.listen(port, () => {
+    console.log(`Example app listening on port http://localhost:${port}`);
+  });
+  // test db
+  await Book.create({
+    title: 'test',
+    author: 'shen',
+    price: 100,
+  });
+}
+
+start();
