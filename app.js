@@ -9,7 +9,7 @@ import ejs from './routes/ejs.js';
 import upload from './routes/upload.js';
 import { dbUrl } from './config/dbConfig.js';
 import connect from './mongodb/db.js';
-import Book from './models/book.js';
+import book from './routes/api/book.js';
 
 const app = express();
 const port = 3000;
@@ -31,6 +31,7 @@ app.use('/response', response);
 app.use('/login', login);
 app.use('/ejs', ejs);
 app.use('/upload', upload);
+app.use('/book', book);
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
@@ -42,12 +43,6 @@ async function start() {
   await connect(dbUrl);
   app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
-  });
-  // test db
-  await Book.create({
-    title: 'test',
-    author: 'shen',
-    price: 100,
   });
 }
 
