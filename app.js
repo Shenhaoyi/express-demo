@@ -25,19 +25,6 @@ app.set('view engine', 'ejs');
 // 全局中间件
 app.use(record);
 app.use(cookieParser());
-
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
-
-app.use('/birds', birds);
-app.use('/singers', singers);
-app.use('/response', response);
-app.use('/login', login);
-app.use('/ejs', ejs);
-app.use('/upload', upload);
-app.use('/book', book);
-app.use('/cookie', cookie);
 app.use(
   session({
     name: 'sid', // 设置 cookie 的 name，默认值是：connect.sid
@@ -54,6 +41,20 @@ app.use(
     },
   }),
 );
+
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
+app.use('/birds', birds);
+app.use('/singers', singers);
+app.use('/response', response);
+app.use('/login', login);
+app.use('/ejs', ejs);
+app.use('/upload', upload);
+app.use('/book', book);
+app.use('/cookie', cookie);
+
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
