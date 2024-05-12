@@ -10,7 +10,8 @@ import upload from './routes/upload.js';
 import { dbUrl } from './config/dbConfig.js';
 import connect from './mongodb/db.js';
 import book from './routes/api/book.js';
-import setCookie from './routes/setCookie.js';
+import cookie from './routes/cookie.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const port = 3000;
@@ -21,6 +22,7 @@ app.set('view engine', 'ejs');
 
 // 全局中间件
 app.use(record);
+app.use(cookieParser());
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
@@ -33,7 +35,7 @@ app.use('/login', login);
 app.use('/ejs', ejs);
 app.use('/upload', upload);
 app.use('/book', book);
-app.use('/set-cookie', setCookie);
+app.use('/cookie', cookie);
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
