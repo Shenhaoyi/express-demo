@@ -10,6 +10,7 @@ import upload from './routes/upload.js';
 import { dbUrl } from './config/dbConfig.js';
 import connect from './mongodb/db.js';
 import book from './routes/api/book.js';
+import setCookie from './routes/setCookie.js';
 
 const app = express();
 const port = 3000;
@@ -32,6 +33,7 @@ app.use('/login', login);
 app.use('/ejs', ejs);
 app.use('/upload', upload);
 app.use('/book', book);
+app.use('/set-cookie', setCookie);
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
@@ -40,7 +42,7 @@ app.use(
 );
 
 async function start() {
-  await connect(dbUrl);
+  // await connect(dbUrl);
   app.listen(port, () => {
     console.log(`Example app listening on port http://localhost:${port}`);
   });
