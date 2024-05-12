@@ -24,7 +24,7 @@ router.post('/', urlencodedParser, (req, res) => {
   }
 });
 
-router.get('/logout', urlencodedParser, (req, res) => {
+router.get('/logout', (req, res) => {
   // 删除 session
   req.session.destroy((err) => {
     if (err) {
