@@ -4,7 +4,7 @@ import birds from './routes/birds.js';
 import singers from './routes/singers.js';
 import response from './routes/response.js';
 import record from './middlewares/record.js';
-import login from './routes/login.js';
+import auth from './routes/auth.js';
 import ejs from './routes/ejs.js';
 import upload from './routes/upload.js';
 import { dbUrl } from './config/dbConfig.js';
@@ -14,6 +14,7 @@ import cookie from './routes/cookie.js';
 import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
+import checkLogin from './middlewares/checkLogin.js';
 
 const app = express();
 const port = 3000;
@@ -49,9 +50,9 @@ app.get('/', (req, res) => {
 app.use('/birds', birds);
 app.use('/singers', singers);
 app.use('/response', response);
-app.use('/login', login);
+app.use('/auth', auth);
 app.use('/ejs', ejs);
-app.use('/upload', upload);
+app.use('/upload', checkLogin, upload);
 app.use('/book', book);
 app.use('/cookie', cookie);
 

@@ -3,17 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>登录</title>
+    <title>注册</title>
   </head>
   <body>
-    <h2>登录</h2>
-    <form action="/auth/login" method="post">
+    <h2>注册</h2>
+    <form action="/auth/register" method="post">
       <label for="username">用户名:</label><br />
       <input type="text" id="username" name="username" /><br />
       <label for="password">密码:</label><br />
       <input type="password" id="password" name="password" /><br /><br />
       <input type="submit" value="提交" />
-      <button><a href="/auth/register">去注册</a></button>
+      <button><a href="/auth/login"> 已注册，去登录</a></button>
     </form>
   </body>
 </html>
