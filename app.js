@@ -15,6 +15,7 @@ import cookieParser from 'cookie-parser';
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import checkLogin from './middlewares/checkLogin.js';
+import authByToken from './routes/api/authByToken.js';
 
 const app = express();
 const port = 3000;
@@ -55,7 +56,7 @@ app.use('/ejs', ejs);
 app.use('/upload', checkLogin, upload);
 app.use('/book', book);
 app.use('/cookie', cookie);
-
+app.use('/token', authByToken);
 
 app.use(
   express.static(path.join(process.cwd(), 'public'), {
